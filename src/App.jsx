@@ -1,58 +1,65 @@
-import React, { useState } from 'react';
-import { Button, Input, VStack } from '@chakra-ui/react';
+import { useState } from 'react';
+import './App.css';
+import { Button, Input, ChakraProvider } from '@chakra-ui/react';
 
 function App() {
-  // Task 1: Declare count state variable
+  // Task 1: Declare a state variable 'count' using useState (initial value: 0)
   const [count, setCount] = useState(0);
 
-  // Task 2: Declare isVisible state variable
+  // Task 2: Declare a state variable 'isVisible' using useState (initial value: true)
   const [isVisible, setIsVisible] = useState(true);
 
-  // Task 3: Declare inputValue state variable
+  // Task 3: Declare a state variable 'inputValue' using useState (initial value: empty string)
   const [inputValue, setInputValue] = useState('');
 
-  // Task 4: Create handleInputChange function
+  // Task 4: Create a function to handle changes in the input field
   const handleInputChange = (event) => {
+    // Update the 'inputValue' with the value entered in the input field
     setInputValue(event.target.value);
   };
 
-  // Task 5: Create applyInputValue function
+  // Task 5: Create a function to apply the input value to the 'count' variable
   const applyInputValue = () => {
+    // Use parseInt to update the 'count' if the input value is a valid number
     const newValue = parseInt(inputValue) || 0;
     setCount(newValue);
   };
 
   return (
-    <VStack spacing={4}>
-      {/* Task 6: Toggle Counter Visibility Button */}
-      <Button onClick={() => setIsVisible(!isVisible)}>
-        Toggle Counter Visibility
-      </Button>
-
-      {/* Task 7: Input Field */}
-      <Input 
-        placeholder="Set counter value" 
-        value={inputValue} 
-        onChange={handleInputChange} 
-      />
-
-      {/* Task 8: Set Counter Button */}
-      <Button className="set-counter-button" onClick={applyInputValue}>
-        Set Counter
-      </Button>
-
-      {/* Task 9: Reset Counter Button */}
-      <Button onClick={() => setCount(0)}>
-        Reset Counter
-      </Button>
-
-      {/* Task 10: Conditionally Render Counter */}
-      {isVisible && (
-        <Button onClick={() => setCount(count + 1)}>
-          Count is {count}
+    <ChakraProvider>
+      <div>
+        {/* Task 6: Button to toggle counter visibility */}
+        <Button onClick={() => setIsVisible(!isVisible)}>
+          Toggle Counter Visibility
         </Button>
+
+        {/* Task 7: Input field to allow users to set the counter value */}
+        <Input
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Set counter value"
+        />
+
+        {/* Task 8: Button to set the counter value to the input field value */}
+        <Button onClick={applyInputValue} className="set-counter-button">Set Counter</Button>
+
+        {/* Task 9: Button to reset the counter value to 0 */}
+        <Button onClick={() => setCount(0)}>Reset Counter</Button>
+      </div>
+      
+      {/* Task 10: Conditionally render the counter only if 'isVisible' is true */}
+      {isVisible && (
+        <div className="card">
+          {/* Task 11: Button to increment the counter */}
+          <Button   code c
+            onClick={() => setCount(count + 1)}
+            className="chakra-button"
+          >
+            count is {count}
+          </Button>
+        </div>
       )}
-    </VStack>
+    </ChakraProvider>
   );
 }
 
