@@ -6,11 +6,14 @@ function App() {
   // Task 1: Declare a state variable 'count' using useState (initial value: 0)
   const [count, setCount] = useState(0);
 
+
   // Task 2: Declare a state variable 'isVisible' using useState (initial value: true)
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setVisible] = useState(true);
+
 
   // Task 3: Declare a state variable 'inputValue' using useState (initial value: empty string)
-  const [inputValue, setInputValue] = useState('');
+  const[inputValue, setInputValue] = useState(' ');
+
 
   // Task 4: Create a function to handle changes in the input field
   const handleInputChange = (event) => {
@@ -21,15 +24,16 @@ function App() {
   // Task 5: Create a function to apply the input value to the 'count' variable
   const applyInputValue = () => {
     // Use parseInt to update the 'count' if the input value is a valid number
-    const newValue = parseInt(inputValue) || 0;
+    const newValue = parseInt(InputValue) ||0;
     setCount(newValue);
+   
   };
 
   return (
     <ChakraProvider>
       <div>
         {/* Task 6: Button to toggle counter visibility */}
-        <Button onClick={() => setIsVisible(!isVisible)}>
+        <Button onClick={() => setIsVisible(isVisible)}>
           Toggle Counter Visibility
         </Button>
 
@@ -52,7 +56,7 @@ function App() {
         <div className="card">
           {/* Task 11: Button to increment the counter */}
           <Button 
-            onClick={() => setCount(count + 1)}
+            onClick={() => setCount(count+1)}
             className="chakra-button"
           >
             count is {count}
